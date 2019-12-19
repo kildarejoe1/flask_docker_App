@@ -2,3 +2,4 @@ python: 2.7
 script:
   - pip install --user -r requirements.txt
   - python -m pytest -v
+  - bash deploy_dockerhub.sh
