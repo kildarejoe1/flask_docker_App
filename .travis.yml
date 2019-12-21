@@ -7,6 +7,5 @@ after_success:
   - sh .travis/deploy_dockerhub.sh
 deploy:
   provider: heroku
-  api_key: $HEROKU_API_KEY
-  app:
-    master: enigmatic-hollows-83898
+  app: enigmatic-hollows-83898
+  api_key: "$HEROKU_API_KEY"
