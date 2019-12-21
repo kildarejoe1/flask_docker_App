@@ -5,7 +5,4 @@ script:
 
 after_success:
   - sh .travis/deploy_dockerhub.sh
-deploy:
-  provider: heroku
-  app: enigmatic-hollows-83898
-  api_key: "$HEROKU_API_KEY"
+  - test "$TRAVIS_BRANCH" = "master" && sh .travis/deploy_heroku.sh
