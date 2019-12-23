@@ -1,1 +1,6 @@
-this is the about page
+{% extends "base.html" %}
+{% block content %}
+{%  for post in posts %}
+This is the about page for this application 
+{% endfor %}
+{% endblock content %}
