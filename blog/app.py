@@ -14,7 +14,7 @@ def index():
 
 @app.route("/posts")
 def display_posts():
-    return render_template("posts.html", posts=posts)
+    return render_template("posts.html", title= "Heroku web app", posts=posts)
 
 @app.route("/about")
 def about():
