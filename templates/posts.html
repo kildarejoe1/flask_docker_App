@@ -1,0 +1,11 @@
+<html>
+<title> Posts Page </title>
+<body
+{%  for post in posts %}
+<p>
+<h3> The authors name is {{ post.author }}
+<h3> The post was posted on {{ post.date }}
+</p>
+{% endfor %}
+<body>
+</html>
