@@ -1,10 +1,12 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, url_for
+from forms import RegistrationForm, LoginForm
 
 import os
 port = int(os.environ.get("PORT", 5000))
 
-posts = [ {"author" : "henry", "date": "11th Jnauary"}, { "author" : "james", "date": "4th Jamuary"}]
+posts = [ {"author" : "henry", "date": "11th Jnauary","content" : "blah blah blah"}, { "author" : "james", "date": "4th Jamuary","content" : "blah blah blah"}]
 app = Flask("__name__")
+app.config['SECRET_KEY'] = "12345"
 
 
 @app.route("/")
@@ -20,6 +22,17 @@ def display_posts():
 def about():
     return render_template("about.html")
 
+
+@app.route("/register")
+def registration():
+    form=RegistrationForm()
+    return render_template("register.html", title='Register', form=form)
+
+
+@app.route("/login")
+def login():
+    form=LoginForm()
+    return render_template("login.html", title="Login", form=form)
 
 
 if __name__ == "__main__":
