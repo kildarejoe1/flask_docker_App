@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template, url_for,flash,redirect
 from forms import RegistrationForm, LoginForm
 
 import os
@@ -12,7 +12,7 @@ app.config['SECRET_KEY'] = "12345"
 @app.route("/")
 @app.route("/home")
 def index():
-    return render_template("index.html")
+    return render_template("index.html", title ="Home")
 
 @app.route("/posts")
 def display_posts():
@@ -23,9 +23,12 @@ def about():
     return render_template("about.html")
 
 
-@app.route("/register")
+@app.route("/register", methods=['GET', 'POST'])
 def registration():
     form=RegistrationForm()
+    if form.validate_on_submit():
+        flash("Account Created for %s !" % form.username.data, 'success')
+        return redirect(url_for('index'))
     return render_template("register.html", title='Register', form=form)
 
 
