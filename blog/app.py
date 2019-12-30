@@ -56,6 +56,10 @@ def about():
 def registration():
     form=RegistrationForm()
     if form.validate_on_submit():
+        password=form.password.data
+        user = User(username=form.user.data, email=form.email.data, password=password)
+        db.session.add(user)
+        db.session.commit()
         flash("Account Created for %s !" % form.username.data, 'success')
         return redirect(url_for('index'))
     return render_template("register.html", title='Register', form=form)
