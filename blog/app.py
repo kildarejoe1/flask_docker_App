@@ -54,10 +54,11 @@ def about():
 
 @app.route("/register", methods=['GET', 'POST'])
 def registration():
+    db.create_all()
     form=RegistrationForm()
     if form.validate_on_submit():
         password=form.password.data
-        user = User(username=form.user.data, email=form.email.data, password=password)
+        user = User(username=form.username.data, email=form.email.data, password=password)
         db.session.add(user)
         db.session.commit()
         flash("Account Created for %s !" % form.username.data, 'success')
